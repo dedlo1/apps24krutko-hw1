@@ -16,7 +16,9 @@ public class TemperatureSeriesAnalysis {
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
         validateTemperatures(temperatureSeries);
-        this.temperatureSeries = Arrays.copyOf(temperatureSeries, temperatureSeries.length * 2);
+        this.temperatureSeries = Arrays.copyOf(
+            temperatureSeries, temperatureSeries.length * 2
+            );
         this.size = temperatureSeries.length;
     }
 
@@ -38,7 +40,10 @@ public class TemperatureSeriesAnalysis {
         double mean = average();
         double sum = 0;
         for (int i = 0; i < size; i++) {
-            sum += Math.pow(temperatureSeries[i] - mean, 2);
+            sum += (
+                (temperatureSeries[i] - mean)
+                * (temperatureSeries[i] - mean)
+                );
         }
         return Math.sqrt(sum / size);
     }
@@ -86,8 +91,9 @@ public class TemperatureSeriesAnalysis {
         double closest = temperatureSeries[0];
         for (int i = 1; i < size; i++) {
             double currentTemp = temperatureSeries[i];
-            if (Math.abs(currentTemp) < Math.abs(closest) || 
-                (Math.abs(currentTemp) == Math.abs(closest) && currentTemp > closest)) {
+            if (Math.abs(currentTemp) < Math.abs(closest)
+            || (Math.abs(currentTemp) == Math.abs(closest)
+            && currentTemp > closest)) {
                 closest = currentTemp;
             }
         }
@@ -101,8 +107,16 @@ public class TemperatureSeriesAnalysis {
         double closest = temperatureSeries[0];
         for (int i = 1; i < size; i++) {
             double currentTemp = temperatureSeries[i];
-            if (Math.abs(currentTemp - tempValue) < Math.abs(closest - tempValue) || 
-                (Math.abs(currentTemp - tempValue) == Math.abs(closest - tempValue) && currentTemp > closest)) {
+            if (Math.abs(
+                currentTemp - tempValue
+                ) < Math.abs(
+                    closest - tempValue
+                    ) 
+                || (Math.abs(
+                    currentTemp - tempValue
+                    ) == Math.abs(
+                        closest - tempValue
+                        ) && currentTemp > closest)) {
                 closest = currentTemp;
             }
         }
@@ -144,7 +158,11 @@ public class TemperatureSeriesAnalysis {
         double[] result = new double[size];
         int count = 0;
         for (int i = 0; i < size; i++) {
-            if (temperatureSeries[i] >= tempLow && temperatureSeries[i] <= tempHigh) {
+            if (
+                temperatureSeries[i] >= tempLow
+                &&
+                temperatureSeries[i] <= tempHigh
+                ) {
                 result[count++] = temperatureSeries[i];
             }
         }
