@@ -143,4 +143,3 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expResult, actualResult);
     }
 }
-
